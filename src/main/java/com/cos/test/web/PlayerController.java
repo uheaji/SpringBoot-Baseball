@@ -1,5 +1,8 @@
 package com.cos.test.web;
 
+import java.util.List;
+
+import org.qlrm.mapper.JpaResultMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -9,8 +12,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cos.test.domain.player.Player;
+import com.cos.test.query.PositionQuery;
 import com.cos.test.service.PlayerService;
 import com.cos.test.web.dto.CommonRespDto;
+import com.cos.test.web.dto.PositionDto;
 import com.cos.test.web.player.dto.PlayerSaveReqDto;
 
 import lombok.RequiredArgsConstructor;
@@ -20,6 +25,17 @@ import lombok.RequiredArgsConstructor;
 public class PlayerController {
 
 	private final PlayerService playerService;
+	private final PositionQuery positionQuery;
+
+	@GetMapping("/position")
+	public String findPosition(Model model) {
+		JpaResultMapper jpaResultMapper = new JpaResultMapper();
+		List<PositionDto> myDtos = jpaResultMapper.list(positionQuery.positionPivot(), PositionDto.class);
+		model.addAttribute("position",  myDtos);
+		return "player/playerPositionList";
+	}
+
+
 
 	@GetMapping("/player/saveForm")
 	public String saveForm() {
@@ -42,8 +58,7 @@ public class PlayerController {
 			return "redirect:/player";
 		}
 	}
-	
-	
+
 	@DeleteMapping("/player/{id}")
 	public @ResponseBody CommonRespDto<?> deleteById(@PathVariable int id) {
 		playerService.삭제하기(id);

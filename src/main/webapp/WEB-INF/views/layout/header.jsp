@@ -22,7 +22,7 @@
 				<li class="nav-item"><a class="nav-link" href="/stadium">야구장 관리</a></li>
 				<li class="nav-item"><a class="nav-link" href="/team">팀 관리</a></li>
 				<li class="nav-item"><a class="nav-link" href="/player">선수 관리</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">포지션별 선수</a></li>
+				<li class="nav-item"><a class="nav-link" href="/position">포지션별 선수</a></li>
 			</ul>
 		</nav>
 
