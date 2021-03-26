@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cos.test.domain.player.Player;
+import com.cos.test.domain.stadium.Stadium;
+import com.cos.test.domain.stadium.StadiumRepository;
 import com.cos.test.domain.team.Team;
 import com.cos.test.domain.team.TeamRepository;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 @Service
 public class TeamService {
 
+	private final StadiumRepository stadiumRepository;
 	private final TeamRepository teamRepository;
 
 	public List<Team> 팀찾기() {
@@ -20,9 +23,12 @@ public class TeamService {
 	}
 	
 	@Transactional
-	public Team 팀등록(Team team) {
+	public Team 팀등록(Team team, int stadiumId) {
+		Stadium stadiumEntity = stadiumRepository.findById(stadiumId).get();
+		team.setStadium(stadiumEntity);
 		return teamRepository.save(team);
 	}
+
 	
 	@Transactional
 	public int 삭제하기(int id) {

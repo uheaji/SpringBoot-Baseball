@@ -2,6 +2,7 @@ package com.cos.test.domain.stadium;
 
 import java.sql.Timestamp;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -31,8 +32,7 @@ public class Stadium {
 	
 	private String stadiumName;
 	
-	@JoinColumn(name = "teamId")
-	@OneToOne
+	@OneToOne(mappedBy = "stadium", cascade = CascadeType.REMOVE)
 	private Team team;
 	
 	@CreationTimestamp

@@ -28,7 +28,7 @@ public class StadiumController {
 		return "stadium/stadiumSaveForm";
 	}
 	
-	@GetMapping("/stadium") 
+	@GetMapping({"/", "/stadium"}) 
 	public String findAll(Model model) {
 		model.addAttribute("stadiums",stadiumService.전체찾기());
 		return "stadium/stadiumList";
@@ -37,7 +37,7 @@ public class StadiumController {
 	@PostMapping("/saveStadium")
 	public String save(StadiumSaveReqDto stadiumSaveReqDto) {
 		 Stadium stadium = stadiumSaveReqDto.toEntity();
-		Stadium stadiumEntity = stadiumService.야구장등록(stadium, stadiumSaveReqDto.getTeamId());
+		Stadium stadiumEntity = stadiumService.야구장등록(stadium);
 		if (stadiumEntity == null) {
 			return "stadium/stadiumSaveForm";
 		} else {

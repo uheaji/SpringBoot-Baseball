@@ -25,11 +25,11 @@ public class StadiumService {
 	}
 
 	@Transactional
-	public Stadium 야구장등록(Stadium stadium, int teamId) {
-		Team teamEntity = teamRepository.findById(teamId).get();
-		stadium.setTeam(teamEntity);
+	public Stadium 야구장등록(Stadium stadium) {
 		return stadiumRepository.save(stadium);
 	}
+	
+
 
 	@Transactional
 	public int 삭제하기(int id) {

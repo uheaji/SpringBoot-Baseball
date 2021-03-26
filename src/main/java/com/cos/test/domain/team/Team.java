@@ -28,18 +28,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 public class Team {
-
 	@Id
 	@GeneratedValue(strategy =  GenerationType.IDENTITY)
 	private Integer id;
 	
-	
 	private String teamName;
 	
-	@OneToOne(mappedBy = "team")
+	@JoinColumn(name = "stadiumId")
+	@OneToOne
 	private Stadium stadium;
-	
-	
 	
 	@CreationTimestamp
 	private Timestamp createDate;

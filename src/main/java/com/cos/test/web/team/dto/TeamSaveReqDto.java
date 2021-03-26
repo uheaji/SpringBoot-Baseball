@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class TeamSaveReqDto {
 	private String teamName;
+	private int stadiumId;
 	
 	public Team toEntity() {
 		return Team.builder()

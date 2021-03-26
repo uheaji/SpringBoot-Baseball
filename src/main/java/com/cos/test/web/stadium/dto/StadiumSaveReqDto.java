@@ -13,7 +13,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class StadiumSaveReqDto {
 	private String stadiumName;
-	private int teamId;
 	
 	public Stadium toEntity() {
 		return Stadium.builder()

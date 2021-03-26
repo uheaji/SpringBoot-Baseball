@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.cos.test.domain.player.Player;
 import com.cos.test.query.PositionQuery;
 import com.cos.test.service.PlayerService;
+import com.cos.test.service.TeamService;
 import com.cos.test.web.dto.CommonRespDto;
 import com.cos.test.web.dto.PositionDto;
 import com.cos.test.web.player.dto.PlayerSaveReqDto;
@@ -26,6 +27,7 @@ public class PlayerController {
 
 	private final PlayerService playerService;
 	private final PositionQuery positionQuery;
+	private final TeamService teamService;
 
 	@GetMapping("/position")
 	public String findPosition(Model model) {
@@ -38,7 +40,8 @@ public class PlayerController {
 
 
 	@GetMapping("/player/saveForm")
-	public String saveForm() {
+	public String saveForm(Model model) {
+		model.addAttribute("teams",teamService.팀찾기());
 		return "player/playerSaveForm";
 	}
 
